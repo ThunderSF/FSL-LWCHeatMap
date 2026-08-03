@@ -1,0 +1,90 @@
+<template>
+    <lightning-card title="Trap Heat Map" icon-name="standard:location">
+        <div slot="actions">
+            <lightning-button-group>
+                <lightning-button label="Upload Floor Plan" icon-name="utility:upload"
+                    onclick={handleCanvasUpload} variant="neutral"></lightning-button>
+                <lightning-button label="Download Map" icon-name="utility:download"
+                    onclick={handleDownloadLocally}></lightning-button>
+                <lightning-button label="Convert File" icon-name="utility:new_window"
+                    onclick={handleOpenConverter}></lightning-button>
+                <lightning-button-menu alternative-text="More Options" menu-alignment="right"
+                    onselect={handleMenuSelect}>
+                    <lightning-menu-item value="upload" label="Save to Salesforce Files"
+                        prefix-icon-name="utility:upload"></lightning-menu-item>
+                </lightning-button-menu>
+            </lightning-button-group>
+        </div>
+
+        <div class="main-content">
+            <template if:true={showSpinner}>
+                <lightning-spinner alternative-text="Generating Image..." size="medium"></lightning-spinner>
+            </template>
+
+            <div class={paletteClass}>
+                <div class="palette-header">Available Traps</div>
+                <template if:true={unplacedAssets}>
+                    <template for:each={unplacedAssetsWithBadge} for:item="asset">
+                        <div key={asset.id} class="asset-card" draggable="true" ondragstart={handleAssetDragStart}
+                            data-asset-id={asset.id}>
+                            <div class="card-icon">🪤</div>
+                            <div class="card-content">
+                                <div class="asset-name">{asset.name}</div>
+                                <div class={asset.badgeClass}>
+                                    {asset.findingText}
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={unplacedAssets.length}>
+                    <div class="no-assets">🎉 All traps placed!</div>
+                </template>
+            </div>
+
+            <template if:true={isDrawingMode}>
+                <div
+                    style="position: absolute; top: 30px; left: 330px; z-index: 10000; background: #ffffff; border: 2px solid #1e40af; border-radius: 12px; padding: 16px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-width: 360px; pointer-events: auto;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                        <div style="font-size: 28px;">📐</div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 700; font-size: 15px; color: #1e40af; letter-spacing: 0.4px;">
+                                DRAWING MODE</div>
+                            <div style="font-size: 15px; color: #1f2937;">{currentDrawingAssetName}</div>
+                        </div>
+                    </div>
+                    <p style="margin: 0 0 16px 0; font-size: 13px; line-height: 1.4; color: #64748b;">
+                        Click the map to add polygon vertices.<br>
+                        The shape updates live as you click.
+                    </p>
+                    <div style="display: flex; gap: 10px;">
+                        <lightning-button label="Finish Polygon" variant="brand"
+                            onclick={finishDrawing}></lightning-button>
+                        <lightning-button label="Cancel" variant="destructive"
+                            onclick={cancelDrawing}></lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={hasValidImage}>
+                <div class="map-container" lwc:dom="manual"></div>
+            </template>
+            <template if:false={hasValidImage}>
+                <div class="no-map-placeholder">
+                    <div style="font-size: 64px; margin-bottom: 16px; opacity: 0.6;">🗺️</div>
+                    <div style="font-size: 20px; font-weight: 600; color: #1e40af; margin-bottom: 8px;">
+                        No Floor Plan Yet
+                    </div>
+                    <p style="color: #64748b; max-width: 320px; margin-bottom: 0;">
+                        Upload a background image for this location using the 
+                        <strong> Upload Floor Plan</strong> button above to start building your pest trap heat map.
+                    </p>
+                </div>
+            </template>
+        </div>
+
+        <div slot="footer"></div>
+    </lightning-card>
+
+    <input type="file" accept="image/*" style="display: none;" onchange={handleFileChange} />
+</template>

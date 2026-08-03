@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Placed_at_Location__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <label>Placed at Location</label>
+        <referenceTo>Location</referenceTo>
+        <relationshipLabel>Assets</relationshipLabel>
+        <relationshipName>Assets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Polygon_Coordinates__c</fullName>
+        <description>Stores JSON array of [y, x] coordinates (Leaflet Simple CRS). Example: [[100,200],[300,200],[300,400],[100,400]]</description>
+        <label>Polygon Coordinates</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Area</fullName>
+                    <default>false</default>
+                    <label>Area</label>
+                </value>
+                <value>
+                    <fullName>FBS</fullName>
+                    <default>false</default>
+                    <label>FBS</label>
+                </value>
+                <value>
+                    <fullName>ILT</fullName>
+                    <default>false</default>
+                    <label>ILT</label>
+                </value>
+                <value>
+                    <fullName>IRT/ET</fullName>
+                    <default>false</default>
+                    <label>IRT/ET</label>
+                </value>
+                <value>
+                    <fullName>Lawn Zone</fullName>
+                    <default>false</default>
+                    <label>Lawn Zone</label>
+                </value>
+                <value>
+                    <fullName>Logbook</fullName>
+                    <default>false</default>
+                    <label>Logbook</label>
+                </value>
+                <value>
+                    <fullName>MISC</fullName>
+                    <default>false</default>
+                    <label>MISC</label>
+                </value>
+                <value>
+                    <fullName>MLS</fullName>
+                    <default>false</default>
+                    <label>MLS</label>
+                </value>
+                <value>
+                    <fullName>PHT</fullName>
+                    <default>false</default>
+                    <label>PHT</label>
+                </value>
+                <value>
+                    <fullName>RBS</fullName>
+                    <default>false</default>
+                    <label>RBS</label>
+                </value>
+                <value>
+                    <fullName>TBS</fullName>
+                    <default>false</default>
+                    <label>TBS</label>
+                </value>
+                <value>
+                    <fullName>WT</fullName>
+                    <default>false</default>
+                    <label>WT</label>
+                </value>
+                <value>
+                    <fullName>Zone</fullName>
+                    <default>false</default>
+                    <label>Zone</label>
+                </value>
+                <value>
+                    <fullName>Pool Pump</fullName>
+                    <default>false</default>
+                    <label>Pool Pump</label>
+                </value>
+                <value>
+                    <fullName>Skimmer Basket</fullName>
+                    <default>false</default>
+                    <label>Skimmer Basket</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>X_Coordinate__c</fullName>
+        <externalId>false</externalId>
+        <label>X Coordinate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Y_Coordinate__c</fullName>
+        <externalId>false</externalId>
+        <label>Y Coordinate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

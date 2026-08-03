@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Enables &apos;Map Editor&apos; functionality within the abcHeatMap LWC. Users with this permission can update X/Y coordinates on Asset records via the drag-and-drop interface.</description>
+    <isLicensed>false</isLicensed>
+    <label>ABC HeatMap Editor Access</label>
+</CustomPermission>
